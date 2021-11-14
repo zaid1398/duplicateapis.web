@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HTTPs & APIs</title>
+    <style>
+
+#tab td, #tab th {
+  border: 1.5px solid rgba(221, 221, 221, 0.801);
+  padding: 50px;
+}
+#tab tr:nth-child(even){background-color: lightblue;}
+#tab tr:nth-child(odd){background-color: coral;}
+#tab tr:hover {background-color:gray;}
+#tab th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: black;
+  color: burlywood;
+}
+#tab td{
+    text-align: center;
+}
+.image{
+    height: 75px;
+    width:100px;
+}
+body{
+    display: flex;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: orangered;
+}
+table{
+    border-radius: solid brown 10px;
+    text-align: center;
+}
+h2{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    font-size: 50px;
+}
+    </style>
+</head>
+<body>
+    <table id="tab">
+        <tr>
+            <th>Title</th>
+            <th>Level</th>
+            <th>Image</th>
+        </tr>
+    </table>
+    <script >
+    fetch('https://codingninjas.in/api/v3/courses')
+.then(res=>res.json())
+    .then(info => {
+        let courses = info.data.courses;
+       
+        for (let i = 0; i < courses.length; i++){
+            let url = courses[i].classroom_icon_url;
+            let title = courses[i].name;
+            let level = courses[i].level;
+            let table = document.querySelector('table');
+            let tableRow = document.createElement('tr');
+            tableRow.innerHTML = '<td>' + title + '</td>' + '<td>' + level + '</td>' + '<td>' + "<img src='" + url + "' class='image'>" + '</td>';
+            table.appendChild(tableRow);
+        }
+})
+    </script>
+</body>
+</html> 
+</html>
